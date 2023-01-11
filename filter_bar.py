@@ -20,7 +20,9 @@ class FilterBar:
         :return: None
         """
         sleep(1)
-        self.driver.find_element(by=By.CSS_SELECTOR, value='button[class="v1tureqs dir dir-ltr"]').click()
+        wait = WebDriverWait(driver=self.driver, timeout=10).until(
+            method=EC.element_to_be_clickable(mark=(By.CSS_SELECTOR, 'button[class="c1tureqs dir dir-ltr"]')))
+        self.driver.find_element(by=By.CSS_SELECTOR, value='button[class="c1tureqs dir dir-ltr"]').click()
 
     def clear_filters(self):
         self.driver.find_element(by=By.CSS_SELECTOR, value='button[class="_za4ekfm"]').click()
