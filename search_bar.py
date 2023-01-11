@@ -3,6 +3,8 @@ import datetime as dt
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class SearchBar:
@@ -13,12 +15,17 @@ class SearchBar:
         """
         self.driver = driver
 
-    def select_location(self, location: str = 'Nowy Jork'):
+    def select_location(self, location: str = 'New York'):
         """
         Choose travel destination.
         :param location: str
         :return: None
         """
+        wait = WebDriverWait(driver=self.driver, timeout=10).until(
+            method=EC.presence_of_all_elements_located(
+                locator=(By.CSS_SELECTOR, 'button[class="f19g2zq0 dir dir-ltr"]')))
+        sleep(1)
+
         self.driver.find_element(by=By.CSS_SELECTOR, value='button[class="f19g2zq0 dir dir-ltr"]').click()
         sleep(1)
         self.driver.find_element(by=By.ID, value='bigsearch-query-location-input').clear()

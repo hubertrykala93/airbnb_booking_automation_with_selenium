@@ -33,10 +33,10 @@ def main():
     filter_bar.select_host_language('Polish')
     filter_bar.get_offers()
 
-    search_bar.select_location(location='Kanada')
+    search_bar.select_location(location='New York')
     # search_bar.select_dates(start='01.11.2022', end='04.11.2022')
     # search_bar.select_adults(number_of_adults=1)
-    # search_bar.select_search()
+    search_bar.select_search()
 
 
 if __name__ == '__main__':
