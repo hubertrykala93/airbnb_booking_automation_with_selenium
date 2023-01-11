@@ -44,11 +44,13 @@ class SearchBar:
         :param end: str
         :return: None
         """
-        if not end:
-            raise Exception('You have choose end date.')
+        if end:
+            self.driver.find_element(by=By.CSS_SELECTOR,
+                                     value=f'div[data-testid="calendar-day-{start.split(sep=".")[1] + "/" + start.split(sep=".")[0] + "/" + start.split(sep=".")[2]}"]').click()
+            self.driver.find_element(by=By.CSS_SELECTOR,
+                                     value=f'div[data-testid="calendar-day-{end.split(sep=".")[1] + "/" + end.split(sep=".")[0] + "/" + end.split(sep=".")[2]}"]').click()
         else:
-            self.driver.find_element(by=By.CSS_SELECTOR, value=f'div[data-testid="calendar-day-{start}"]').click()
-            self.driver.find_element(by=By.CSS_SELECTOR, value=f'div[data-testid="calendar-day-{end}"]').click()
+            raise Exception('You have choose end date.')
 
     def select_adults(self, number_of_adults: int = 1) -> None:
         """
@@ -120,5 +122,6 @@ class SearchBar:
         :return: None
         """
         self.driver.find_element(by=By.CSS_SELECTOR,
+                                 value='button[class="f19g2zq0 dir dir-ltr"]').click()
+        self.driver.find_element(by=By.CSS_SELECTOR,
                                  value='button[data-testid="structured-search-input-search-button"]').click()
-        sleep(1)
